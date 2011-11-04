@@ -9,9 +9,10 @@ describe "Worldfactbook::Country" do
 
   describe "valid country" do
 
-    before(:each) do
+    before(:all) do
       # Get 'united states'
       @country = Worldfactbook::Country.new('united states')
+      @country.wfb_location = "/Volumes/Files/Users/tres/work/way.io/MapZaps/factbook"
     end
   
     it "should list available countries" do
@@ -125,12 +126,33 @@ describe "Worldfactbook::Country" do
       @country.location.should =~ /bordering/
     end
 
+    it "should find geographic coordinates"  do
+      @country.geographic_coordinates.should =~ /38/
+    end
+
+    it "should find map references" do
+      @country.map_references.should =~ /North America/
+    end
+
+
     it "should find the area" do
       @country.area.should =~ /sq km/
     end
 
     it "should find the area_comparative" do
       @country.area_comparative.should =~ /size of/
+    end
+
+    it "should find land boundaries" do
+      @country.land_boundaries.should =~ /border countries/
+    end
+
+    it "should find coastline" do
+      @country.coastline.should =~ /km/
+    end
+
+    it "should find maritime claims" do
+      @country.maritime_claims.should =~ /territorial sea/
     end
 
     it "should find the climate" do
@@ -149,8 +171,56 @@ describe "Worldfactbook::Country" do
       @country.natural_resources.should =~ /natural gas/
     end
 
+    it "should find land use" do
+      @country.land_use.should =~ /arable land/
+    end
+
+    it "should find irrigated land" do
+      @country.irrigated_land.should =~ /sq km/
+    end
+
+    it "should find total water resources" do
+      @country.total_water_resources.should =~ /cu km/
+    end
+
+    it "should find freshwater withdrawal" do
+      @country.freshwater_withdrawal.should =~ /per capita/
+    end
+
+    it "should find natural hazards" do
+      @country.natural_hazards.should =~ /volcanism/
+    end
+
+    it "should find environment current issues" do
+      @country.env_current_issues.should =~ /air pollution/
+    end
+
+    it "should find international environmental agreements" do
+      @country.env_intnl_agreements.should =~ /signed, but not ratified/
+    end
+
+    it "should find geography note" do
+      @country.geography_note.should =~ /McKinley/
+    end
+
 
     ## PEOPLE
+
+    it "should find nationality" do
+      @country.nationality.should =~ /noun/
+    end
+
+    it "should find ethnic groups" do
+      @country.ethnic_groups.should =~ /Amerindian/
+    end
+
+    it "should find religions" do
+      @country.religions.should =~ /Mormon/
+    end
+
+    it "should find languages" do
+      @country.languages.should =~ /English/
+    end
 
     it "should find the population" do
       @country.population.should =~ /country comparison/
